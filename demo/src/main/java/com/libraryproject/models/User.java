@@ -9,7 +9,7 @@ public class User {
     @GeneratedValue
     private Long id;
     @Column(name = "firstName")
-    private String fistName;
+    private String firstName;
     @Column(name = "secondName")
     private String secondName;
     @Column(name = "thirdName")
@@ -28,12 +28,12 @@ public class User {
         this.id = id;
     }
 
-    public String getFistName() {
-        return fistName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFistName(String fistName) {
-        this.fistName = fistName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getSecondName() {

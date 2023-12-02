@@ -51,6 +51,7 @@ public class BookService {
         Book updated = bookRepository.save(original);
         return updated;
     }
+
     public void delete(Long id){
         Book book = get(id);
         bookRepository.delete(book);

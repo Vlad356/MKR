@@ -1,6 +1,5 @@
 package com.libraryproject.services;
 
-import com.libraryproject.models.Book;
 import com.libraryproject.models.User;
 import com.libraryproject.models.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,9 +40,10 @@ public class UserService {
         User save = userRepository.save(user);
         return save;
     }
+
     public User update (Long id, User user){
         User original = get(id);
-        original.setFistName(user.getFistName());
+        original.setFirstName(user.getFirstName());
         original.setSecondName(user.getSecondName());
         original.setThirdName(user.getThirdName());
         original.setPhoneNumber(user.getPhoneNumber());
@@ -52,6 +52,7 @@ public class UserService {
         User updated = userRepository.save(original);
         return updated;
     }
+
     public void delete(Long id){
         User user = get(id);
         userRepository.delete(user);
