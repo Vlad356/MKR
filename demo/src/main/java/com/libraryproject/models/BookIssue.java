@@ -2,31 +2,25 @@ package com.libraryproject.models;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "BOOK_ISSUE")
 public class BookIssue {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user")
     private User user;
-
-    @ManyToOne
-    @JoinColumn(name = "book_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "book")
     private Book book;
+    @Column(name = "issueDate")
+    private Date issueDate;
+    @Column(name = "returnDate")
+    private Date returnDate;
 
-    @Column(name = "checkout_date")
-    private LocalDateTime checkoutDate;
-
-    @Column(name = "return_date")
-    private LocalDateTime returnDate;
-
-    // getters and setters
 
     public Long getId() {
         return id;
@@ -52,26 +46,19 @@ public class BookIssue {
         this.book = book;
     }
 
-    public LocalDateTime getCheckoutDate() {
-        return checkoutDate;
+    public Date getIssueDate() {
+        return issueDate;
     }
 
-    public void setCheckoutDate(LocalDateTime checkoutDate) {
-        this.checkoutDate = checkoutDate;
+    public void setIssueDate(Date issueDate) {
+        this.issueDate = issueDate;
     }
 
-    public LocalDateTime getReturnDate() {
+    public Date getReturnDate() {
         return returnDate;
     }
 
-    public void setReturnDate(LocalDateTime returnDate) {
+    public void setReturnDate(Date returnDate) {
         this.returnDate = returnDate;
     }
-
-    public boolean isOverdue() {
-        if (user.getExpired() == "Yes"){return true;}
-        return false;
-
-    }
 }
-
